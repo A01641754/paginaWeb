@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somnia - Registro Paso 1</title>
+    
+    <style>
+        /* 1. EL MISMO FONDO Y BARRA (Consistencia visual) */
+        body { background-color: #C47BE4; font-family: 'Georgia', serif; margin: 0; padding: 0; }
+        
+        nav { 
+            background-color: rgba(0, 0, 0, 0.3); 
+            display: flex; justify-content: space-around; align-items: center; 
+            padding: 15px; border-bottom: 2px solid purple; 
+        }
+        
+        nav a { text-decoration: none; color: black; font-weight: bold; font-size: 18px; padding: 5px 15px; border-radius: 20px; }
+        .btn-historia { background-color: #E2A669; }
+        .btn-islas { background-color: #82C26E; }
+        .btn-personajes { background-color: #8E71D0; }
+        .btn-creadores { background-color: #D87A99; }
+
+        /* 2. LA CAJA BLANCA DEL REGISTRO */
+        .contenedor-registro {
+            background-color: white; width: 500px; margin: 40px auto; 
+            padding: 30px; border-radius: 20px; text-align: center; 
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Agregamos type="email" y type="password" a nuestro diseño */
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 90%; padding: 15px; margin: 10px 0; 
+            border: 2px solid #ccc; border-radius: 10px; font-size: 16px; 
+            box-sizing: border-box; /* Esto evita que el input se salga de la caja */
+        }
+
+        /* Botón ancho de la Parte 1 */
+        .btn-continuar {
+            background-color: #3B2416; color: #CBA153; font-size: 20px; 
+            padding: 15px 40px; border: none; border-radius: 10px; 
+            cursor: pointer; margin-top: 20px; width: 80%;
+        }
+
+        /* El mensaje de error palpitante que te gustó */
+        .mensaje-error {
+            color: #D32F2F; font-size: 14px; font-weight: bold; 
+            display: none; margin: 10px 0; animation: palpitar 1s infinite; 
+        }
+        @keyframes palpitar { 
+            0% { transform: scale(1); opacity: 1; } 
+            50% { transform: scale(1.05); opacity: 0.5; color: #FF0000; } 
+            100% { transform: scale(1); opacity: 1; } 
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="font-size: 24px; font-weight: bold; font-family: monospace;">Somnia</div>
+        <a href="#">Videojuego</a>
+        <a href="#" class="btn-historia">Historia</a>
+        <a href="#" class="btn-islas">Islas</a>
+        <a href="#" class="btn-personajes">Personajes</a>
+        <a href="#" class="btn-creadores">Creadores</a>
+    </nav>
+
+    <div class="contenedor-registro">
+        <h1 style="font-size: 36px; margin-bottom: 20px;">Registro</h1>
+
+        <div id="alerta-error" class="mensaje-error">
+            <span id="texto-error">X Faltan datos por rellenar o el email no es válido.</span>
+        </div>
+
+        <form id="formulario-paso1">
+            <input type="email" id="email" placeholder="Introducir email" required>
+            
+            <input type="text" id="username" placeholder="Introducir username" required>
+            
+            <input type="password" id="password" placeholder="Introducir contraseña" required>
+            <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required>
+            
+            <button type="button" class="btn-continuar" onclick="validarPaso1()">Continuar con el Registro</button>
+        </form>
+
+        <p style="margin-top: 20px;"><a href="#" style="color: #E2A669; text-decoration: none;">Log in</a></p>
+    </div>
+
+    <script>
+        function validarPaso1() {
+            const form = document.getElementById('formulario-paso1');
+            const mensajeError = document.getElementById('alerta-error');
+            const textoError = document.getElementById('texto-error');
+            
+            // Sacamos los valores de las contraseñas para compararlas
+            const pass1 = document.getElementById('password').value;
+            const pass2 = document.getElementById('confirm-password').value;
+
+            // 1. Revisamos si llenaron todo y si el email tiene formato correcto
+            if (form.checkValidity() === false) {
+                textoError.innerText = "Faltan datos por rellenar \n Asegúrese que todos los campos estén llenos.";
+                mensajeError.style.display = 'block';
+            } 
+            // 2. Revisamos si las dos contraseñas son exactamente iguales
+            else if (pass1 !== pass2) {
+                textoError.innerText = "X Las contraseñas no coinciden. ¡Revisa bien!";
+                mensajeError.style.display = 'block';
+            } 
+            // 3. ¡Todo chido! Podemos avanzar
+            else {
+                mensajeError.style.display = 'none';
+                alert('¡Perfecto! Todo en orden. Llevando al usuario a la Parte 2...');
+                // Aquí en el futuro pondremos: window.location.href = 'registro_parte2.html';
+            }
+        }
+    </script>
+
+</body>
+</html>

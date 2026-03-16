@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somnia - Registro</title>
+    
+    <style>
+        /* 1. EL FONDO DEL JUEGO */
+        body {
+            background-color: #5B9BD5; /* Ese azul chido que tienes de fondo */
+            font-family: 'Georgia', serif; /* Una fuente que le da ese toque de fantasía */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. LA BARRA DE NAVEGACIÓN TRANSPARENTE */
+        nav {
+            /* rgba significa Red, Green, Blue y Alpha (transparencia). 
+               Aquí es negro al 30% de opacidad */
+            background-color: rgba(0, 0, 0, 0.3); 
+            display: flex; /* Para poner todo en una sola línea */
+            justify-content: space-around; /* Reparte los botones parejito */
+            align-items: center;
+            padding: 15px;
+            border-bottom: 2px solid purple; /* El bordecito morado de tu diseño */
+        }
+
+        /* Los links del menú */
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* Colores de tus botones del menú */
+        .btn-historia { background-color: #E2A669; }
+        .btn-islas { background-color: #82C26E; }
+        .btn-personajes { background-color: #8E71D0; }
+        .btn-creadores { background-color: #D87A99; }
+
+        /* 3. LA CAJA BLANCA DEL REGISTRO */
+        .contenedor-registro
+        {
+            background-color: white;
+            width: 500px;
+            margin: 40px auto; /* Lo centra horizontalmente */
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Diseño de los inputs (cajas de texto) */
+        input[type="text"], input[type="number"] {
+            width: 90%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        /* Diseño especial para la fila del NIDE */
+        .fila-nide {
+            background-color: #F2D9D3; /* Ese color carnita de tu diseño */
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #C4A49D;
+        }
+
+        /* El botón de finalizar */
+        .btn-finalizar {
+            background-color: #3B2416; /* Café oscuro */
+            color: #CBA153; /* Letras doradas */
+            font-size: 20px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 80%;
+        }
+
+        /* 4. LA MAGIA: EL MENSAJE PALPITANTE */
+        .mensaje-error
+        {
+            color: #D32F2F;
+            font-size: 14px;
+            font-weight: bold;
+            display: none; /* Escondido por defecto */
+            margin: 10px 0;
+            /* Aquí llamamos a la animación */
+            animation: palpitar 2s infinite; 
+        }
+
+        /* Así se crea una animación en CSS (Keyframes) */
+        @keyframes palpitar
+        {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.5; color: #FF0000; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="font-size: 24px; font-weight: bold; font-family: monospace;">Somnia</div>
+        <a href="#">Videojuego</a>
+        <a href="#" class="btn-historia">Historia</a>
+        <a href="#" class="btn-islas">Islas</a>
+        <a href="#" class="btn-personajes">Personajes</a>
+        <a href="#" class="btn-creadores">Creadores</a>
+    </nav>
+
+    <div class="contenedor-registro">
+        <h1 style="font-size: 36px; margin-bottom: 20px;">Registro</h1>
+
+        <div id="alerta-error" class="mensaje-error">
+            <img src="https://cdn-icons-png.flaticon.com/512/179/179386.png" width="20" style="vertical-align: middle;">
+            Faltan datos por rellenar o son incorrectos.
+            <br><span style="font-size: 11px;">Asegúrese que todos los campos estén llenos.</span>
+        </div>
+
+        <form id="formulario-somnia">
+            
+            <input type="text" id="nombre" placeholder="Introducir nombre" 
+                   pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" 
+                   title="Solo se permiten letras" required>
+            
+            <input type="number" id="edad" placeholder="Introducir edad" 
+                   min="7" 
+                   title="Debes tener 7 años o más" required>
+            
+            <div class="fila-nide">
+                <label for="nide" style="font-size: 18px; color: grey;">Eres usuario de NIDE</label>
+                <input type="checkbox" id="nide" style="width: 25px; height: 25px;">
+            </div>
+
+            <input type="text" id="colonia" placeholder="Colonia" required>
+            <input type="text" id="contacto" placeholder="Contacto" required>
+
+            <button type="button" class="btn-finalizar" onclick="validarFormulario()">Finalizar</button>
+        </form>
+
+        <p style="margin-top: 20px;"><a href="#" style="color: #E2A669; text-decoration: none;">Log in</a></p>
+    </div>
+
+    <script>
+        function validarFormulario() {
+            // Agarramos el formulario y el mensaje de error de nuestro HTML
+            const form = document.getElementById('formulario-somnia');
+            const mensajeError = document.getElementById('alerta-error');
+
+            // .checkValidity() revisa automáticamente los 'required', el 'min=7' y el 'pattern' de letras
+            if (form.checkValidity() === false) {
+                // Si algo falta o está mal, mostramos el mensaje palpitante
+                mensajeError.style.display = 'block';
+            } else {
+                // Si todo está bien, ocultamos el error y podemos avanzar
+                mensajeError.style.display = 'none';
+                alert('¡Todo perfecto bro! Bienvenido a Somnia.');
+                // Aquí podrías redirigir a la siguiente pantalla
+            }
+        }
+    </script>
+
+</body>
+</html>
