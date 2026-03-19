@@ -29,15 +29,16 @@
         <form id="formulario-somnia">
             
             <input type="text" id="nombre" placeholder="Introducir nombre" 
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" 
-                    title="Solo se permiten letras" required>
+                   pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" 
+                   title="Solo se permiten letras" required>
             
-            <input type="date" id="fecha-nacimiento" 
-                    title="Fecha de nacimiento"required>
+            <input type="number" id="edad" placeholder="Introducir edad" 
+                   min="7" 
+                   title="Debes tener 7 años o más" required>
             
             <div class="fila-nide">
                 <label for="nide" style="font-size: 18px; color: grey;">Eres usuario de NIDE</label>
-                <input type="checkbox" id="nide" style="width: 20px; height: 20px;">
+                <input type="checkbox" id="nide" style="width: 25px; height: 25px;">
             </div>
 
             <input type="text" id="colonia" placeholder="Colonia" required>
@@ -56,7 +57,7 @@
             const mensajeError = document.getElementById('alerta-error');
 
             // .checkValidity() revisa automáticamente los 'required', el 'min=7' y el 'pattern' de letras
-            if (form.checkValidity() == false) {
+            if (form.checkValidity() === false) {
                 // Si algo falta o está mal, mostramos el mensaje palpitante
                 mensajeError.style.display = 'block';
             } else {
