@@ -1,6 +1,4 @@
-/* =========================
-   RESET BÁSICO
-========================= */
+/*======== RESET BÁSICO ========*/
 * {
   margin: 0;
   padding: 0;
@@ -17,9 +15,7 @@ body {
   color: white;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/*======== NAVBAR ========*/
 .navbar {
   position: fixed;
   top: 0;
@@ -64,9 +60,7 @@ body {
   opacity: 0.8;
 }
 
-/* =========================
-   HERO
-========================= */
+/*======== HERO ========*/
 .hero {
   position: relative;
   min-height: 100vh;
@@ -92,9 +86,7 @@ body {
   background-position: center;
 }
 
-/* =========================
-   SHOWCASE
-========================= */
+/*======== SHOWCASE ========*/
 .showcase {
   width: 100%;
   display: flex;
@@ -114,10 +106,7 @@ body {
 
 }
 
-/* =========================
-   CAPA DE FONDO BASE
-   ESTA SÍ HACE ZOOM
-========================= */
+/* ======== CAPA DE FONDO BASE, ESTA SÍ HACE ZOOM ========*/
 .showcase-card__bg {
   position: absolute;
   inset: 0;
@@ -188,15 +177,14 @@ body {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/*-----------------------------------------------*/
-/*INICIO*/
+/*======== INICIO ========*/
 .showcase-card--inicio .showcase-card__bg {
   background-image: url("imagenes/inicio.jfif");
 }
 
 .showcase-card--inicio .showcase-card__hover-image {
   background-image: url("imagenes/bolillo.png");
-   background-size: contain;
+  background-size: contain;
   background-position: 85% bottom;
   background-repeat: no-repeat;
 }
@@ -237,4 +225,55 @@ body {
 
 .showcase-card--creadores .showcase-card__hover-image {
   background-image: url("img/creadores-hover.jpg");
+}
+
+/*======== DISEÑO RESPONSIVO PARA TELEFONOS Y TABLETS ========*/
+
+/* Esta regla se activa SOLO cuando la pantalla mide 768px o menos 
+    que es el tamaño comun en tablets y celulares */
+@media (max-width: 768px)
+{
+  
+  /* 1.Se ajusta la barra de navegación */
+  .navbar
+  {
+    flex-direction: column; /* Apila el logo arriba y los botones abajo */
+    padding: 10px;
+  }
+  
+  .navbar__menu
+  {
+    flex-wrap: wrap; /* Si los botones no caben, los pasa a la línea de abajo automáticamente */
+    justify-content: center;
+    gap: 15px; /* Es más grande el espacio entre botones para que quepan mejor */
+    padding: 10px 0;
+  }
+
+  .navbar__menu a
+  {
+    font-size: 0.9rem; /* Hacemos la letra del menú un poco más chiquitas para que se vea bien */
+  }
+
+  /* 2. Se ajustan las tarjetas del juego */
+  .showcase-card {
+    min-height: 120px; /* Hacemos las tarjetas menos altas en el celular */
+  }
+
+  .showcase-card__inner h2
+  {
+    font-size: 1.5rem; /* Hacemo el texto de las tarjetas más pequeñi para que no se salga */
+  }
+
+  /* 3. Arreglamos la caja del registro */
+  .contenedor-registro {
+    width: 90%; /* En lugar de estar clavada en 500px, tomará el 90% de la pantalla del celular */
+    padding: 20px; 
+  }
+}
+
+/* Y si queremos ser súper detallistas con celulares muy muy pequeños (menos de 480px) */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 150px; /* Damos más espacio arriba porque el menú apilado estorbará más */
+  }
 }
