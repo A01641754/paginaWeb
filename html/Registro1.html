@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somnia - Registro Paso 1</title>
+    <link rel="stylesheet" href="csslian.css">
+
+</head>
+<body>
+
+    <nav>
+        <div style="font-size: 24px; font-weight: bold; font-family: monospace;">Somnia</div>
+        <a href="#">Videojuego</a>
+        <a href="#" class="btn-historia">Historia</a>
+        <a href="#" class="btn-islas">Islas</a>
+        <a href="#" class="btn-personajes">Personajes</a>
+        <a href="#" class="btn-creadores">Creadores</a>
+    </nav>
+
+    <div class="contenedor-registro">
+        <h1 style="font-size: 36px; margin-bottom: 20px;">Registro</h1>
+
+        <div id="alerta-error" class="mensaje-error">
+            <span id="texto-error">X Faltan datos por rellenar o el email no es válido.</span>
+        </div>
+
+        <form id="formulario-paso1">
+            <input type="email" id="email" placeholder="Introducir email" required>
+            
+            <input type="text" id="username" placeholder="Introducir username" required>
+            
+            <input type="password" id="password" placeholder="Introducir contraseña" required>
+            <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required>
+            
+            <button type="button" class="btn-continuar" onclick="validarPaso1()">Continuar con el Registro</button>
+        </form>
+
+        <p style="margin-top: 20px;"><a href="#" style="color: #E2A669; text-decoration: none;">Log in</a></p>
+    </div>
+
+    <script>
+        function validarPaso1() {
+            const form = document.getElementById('formulario-paso1');
+            const mensajeError = document.getElementById('alerta-error');
+            const textoError = document.getElementById('texto-error');
+            
+            // Sacamos los valores de las contraseñas para compararlas
+            const pass1 = document.getElementById('password').value;
+            const pass2 = document.getElementById('confirm-password').value;
+
+            // 1. Revisamos si llenaron todo y si el email tiene formato correcto
+            if (form.checkValidity() === false) {
+                textoError.innerText = "Faltan datos por rellenar \n Asegúrese que todos los campos estén llenos.";
+                mensajeError.style.display = 'block';
+            } 
+            // 2. Revisamos si las dos contraseñas son exactamente iguales
+            else if (pass1 !== pass2) {
+                textoError.innerText = "X Las contraseñas no coinciden. ¡Revisa bien!";
+                mensajeError.style.display = 'block';
+            } 
+            // 3. ¡Todo chido! Podemos avanzar
+            else {
+                mensajeError.style.display = 'none';
+                alert('¡Perfecto! Todo en orden. Llevando al usuario a la Parte 2...');
+                // Aquí en el futuro pondremos: window.location.href = 'registro_parte2.html';
+            }
+        }
+    </script>
+
+</body>
+</html>

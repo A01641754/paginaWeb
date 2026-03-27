@@ -1,0 +1,119 @@
+/* ===== ESTILO GENERAL DEL SITIO SOMNIA ===== */
+
+/* Fondo del sitio */
+body {
+    background-color: #5B9BD5;
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== BARRA DE NAVEGACIÓN ===== */
+
+nav {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px solid purple;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+
+
+/* Botones del menú */
+.btn-historia { background-color: #E2A669; }
+.btn-islas { background-color: #82C26E; }
+.btn-personajes { background-color: #8E71D0; }
+.btn-creadores { background-color: #D87A99; }
+
+
+/* ===== CONTENEDOR DE REGISTRO ===== */
+
+.contenedor-registro {
+    background-color: white;
+    width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+
+/* ===== INPUTS ===== */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 90%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+/* ===== FILA NIDE ===== */
+
+.fila-nide {
+    background-color: #F2D9D3;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #C4A49D;
+}
+
+
+/* ===== BOTONES ===== */
+
+.btn-continuar,
+.btn-finalizar {
+    background-color: #3B2416;
+    color: #CBA153;
+    font-size: 20px;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 80%;
+}
+
+
+/* ===== MENSAJE DE ERROR ===== */
+
+.mensaje-error {
+    color: #D32F2F;
+    font-size: 14px;
+    font-weight: bold;
+    display: none;
+    margin: 10px 0;
+    animation: palpitar 1.5s infinite;
+}
+
+
+/* ===== ANIMACIÓN ===== */
+
+@keyframes palpitar {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.5; color: #FF0000; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
