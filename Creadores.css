@@ -1,0 +1,111 @@
+/* Estilos base */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: 'Georgia', serif;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el pie de pagina siempre se quede hasta abajo */
+}
+
+.contenedor-creadores
+{
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
+    flex-grow: 1; /* Empuja el pie de pagina hacia el fondo */
+}
+
+/* Titulo Principal*/
+.titulo-equipo
+{
+    font-family: "Old English Text MT", "UnifrakturMaguntia", serif; 
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: normal;
+    margin-bottom: 60px;
+}
+
+/* Cuadricula del Equipo */
+.cuadricula-equipo
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Crea las 3 columnas */
+    gap: 60px 40px; /* Damos espacio entre filas y columnas */
+    justify-items: center; /* Centramos cada tarjeta en su espacio */
+}
+
+/* Nuestras tarjetas */
+.tarjeta-creador
+{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* El círculo para la foto */
+.foto-creador
+{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    border: 2px solid gray; /* Borde para verse más coqueto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+.nombre-creador
+{
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.rol-creador {
+    font-size: 1.1rem;
+    color: #333; /* Un gris oscuro para que resalte menos que el nombre */
+}
+
+/* Pie de pagina */
+.footer-alianza
+{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.2rem;
+    font-family: serif;
+    width: 100%;
+}
+
+/* La parte responsiva para los telefonos*/
+
+@media (max-width: 768px)
+{
+    .cuadricula-equipo {
+        grid-template-columns: repeat(2, 1fr); /* En tablet pasa a 2 columnas */
+    }
+}
+
+@media (max-width: 480px)
+{
+    .cuadricula-equipo
+    {
+        grid-template-columns: 1fr; /* En celular pasa a 1 sola columna hacia abajo */
+    }
+}

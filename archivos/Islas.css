@@ -1,0 +1,156 @@
+/* Estilos base */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: 'Georgia', serif;
+    background-color: white;
+    color: black;
+}
+
+.contenedor-islas
+{
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Titulo Gotico */
+.titulo-isla
+{
+    font-family: "Old English Text MT", "UnifrakturMaguntia", serif; 
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    margin-left: 20px;
+}
+
+/* El mapa y su texto descriptivo al lado, usando Flexbox
+ para que se vea bien en pc y luego se adapte al telefono */
+.contenido-principal
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.mapa-circulo
+{
+    width: 400px;
+    height: 400px;
+    border-radius: 50%; /* Esto hace que el cuadrado se vuelva un círculo perfecto */
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Sombrita para que el texto resalte */
+}
+
+.imagen-isla1
+{ 
+    background-image: url('Nosotros.jpeg'); 
+    background-size: cover; /* La imagen llena la imagen el un circulo perfecto jiji */
+    background-position: center; /* Centramos la foto */
+} 
+
+.imagen-isla2
+{ 
+    background-image: url('Nosotros.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+} 
+
+.imagen-isla3
+{ 
+    background-image: url('Nosotros.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+}
+
+.descripcion-isla
+{
+    max-width: 400px;
+    text-align: center;
+}
+
+.titulo-rojo
+{
+    color: #d91727; 
+    font-size: 2.2rem;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.texto-lore
+{
+    font-size: 1.8rem;
+    line-height: 1.4;
+}
+
+/* Botones de las otras islas*/
+.contenedor-botones
+{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.btn-ovalo
+{
+    background-color: black;
+    color: white;
+    text-decoration: none; /* Le quita la raya de abajo al enlace */
+    padding: 15px 50px;
+    border-radius: 50px; /* Esto lo hace ovalado */
+    font-size: 1.5rem;
+    border: 2px solid black;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-ovalo:hover
+{
+    transform: scale(1.05);
+    background-color: #333; /* Se pone un poco gris al pasar el mouse */
+}
+
+/* Nuestra alianza de NIDE con nosotros */
+.footer-alianza
+{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.2rem;
+    font-family: serif;
+    margin-top: auto;
+}
+
+/* La parte responsiva para los telefonos*/
+@media (max-width: 768px)
+{
+    .contenido-principal
+    {
+        flex-direction: column; /* Hace que el mapa se vea arriba y el texto abajo */
+    }
+    
+    .contenedor-botones
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .titulo-isla
+    {
+        text-align: center;
+        margin-left: 0;
+    }
+}
