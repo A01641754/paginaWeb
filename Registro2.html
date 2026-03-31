@@ -3,71 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somnia - Registro</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Registro - Datos de Cuenta</title>
+    <link rel="stylesheet" href="Registro.css">
 </head>
 <body>
 
-    <nav>
-        <div style="font-size: 24px; font-weight: bold; font-family: monospace;">Somnia</div>
-        <a href="#">Videojuego</a>
-        <a href="#" class="btn-historia">Historia</a>
-        <a href="#" class="btn-islas">Islas</a>
-        <a href="#" class="btn-personajes">Personajes</a>
-        <a href="#" class="btn-creadores">Creadores</a>
-    </nav>
-
     <div class="contenedor-registro">
-        <h1 style="font-size: 36px; margin-bottom: 20px;">Registro</h1>
+        <h1 class="titulo-registro">Registro</h1>
 
-        <div id="alerta-error" class="mensaje-error">
-            <img src="https://cdn-icons-png.flaticon.com/512/179/179386.png" width="20" style="vertical-align: middle;">
-            Faltan datos por rellenar o son incorrectos.
-            <br><span style="font-size: 11px;">Asegúrese que todos los campos estén llenos.</span>
-        </div>
-
-        <form id="formulario-somnia">
+        <form id="form-paso2">
             
-            <input type="text" id="nombre" placeholder="Introducir nombre" 
-                   pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" 
-                   title="Solo se permiten letras" required>
-            
-            <input type="number" id="edad" placeholder="Introducir edad" 
-                   min="7" 
-                   title="Debes tener 7 años o más" required>
-            
-            <div class="fila-nide">
-                <label for="nide" style="font-size: 18px; color: grey;">Eres usuario de NIDE</label>
-                <input type="checkbox" id="nide" style="width: 25px; height: 25px;">
-            </div>
+            <input type="email" id="email" class="caja-input" placeholder="Introducir email" required>
+            <div id="error-email" class="error-debajo">X Introduce un email válido.</div>
 
-            <input type="text" id="colonia" placeholder="Colonia" required>
-            <input type="text" id="contacto" placeholder="Contacto" required>
+            <input type="text" id="username" class="caja-input" placeholder="Introducir username" required>
+            <div id="error-username" class="error-debajo">X El username ya está registrado a una cuenta.</div>
 
-            <button type="button" class="btn-finalizar" onclick="validarFormulario()">Finalizar</button>
+            <input type="password" id="password" class="caja-input" placeholder="Introducir contraseña" required>
+            <div id="error-password" class="error-debajo">X La contraseña solo puede contener letras y números.</div>
+
+            <input type="password" id="confirm-pass" class="caja-input" placeholder="Confirmar contraseña" required>
+            <div id="error-confirm" class="error-debajo">X Las contraseñas no coinciden.</div>
+
+            <button type="button" class="btn-continuar" onclick="validarPaso2()">Finalizar Registro</button>
         </form>
 
-        <p style="margin-top: 20px;"><a href="#" style="color: #E2A669; text-decoration: none;">Log in</a></p>
+        <a href="Login.html" class="enlace-login">Iniciar Sesión</a>
     </div>
 
     <script>
-        function validarFormulario() {
-            // Agarramos el formulario y el mensaje de error de nuestro HTML
-            const form = document.getElementById('formulario-somnia');
-            const mensajeError = document.getElementById('alerta-error');
+        function validarPaso2()
+        {
+            document.querySelectorAll('.error-debajo').forEach(e => e.style.display = 'none');
 
-            // .checkValidity() revisa automáticamente los 'required', el 'min=7' y el 'pattern' de letras
-            if (form.checkValidity() === false) {
-                // Si algo falta o está mal, mostramos el mensaje palpitante
-                mensajeError.style.display = 'block';
-            } else {
-                // Si todo está bien, ocultamos el error y podemos avanzar
-                mensajeError.style.display = 'none';
-                alert('¡Todo perfecto bro! Bienvenido a Somnia.');
-                // Aquí podrías redirigir a la siguiente pantalla
+            const email = document.getElementById('email').value;
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm-pass').value;
+
+            let hayErrores = false;
+
+            // Validamos la contraseña que solo acepta letras y números solamente
+            const regexLetrasNumeros = /^[a-zA-Z0-9]+$/;
+            if (!regexLetrasNumeros.test(pass) || pass === "") {
+                document.getElementById('error-password').style.display = 'block';
+                hayErrores = true;
+            }
+
+            //Revisamos si las dos contraseñas son exactamente iguales
+            if (pass !== confirm || confirm === "")
+            {
+                document.getElementById('error-confirm').style.display = 'block';
+                hayErrores = true;
+            }
+
+            // Simulación de base de datos MySQL cuando la conectemos jiji (si pone 'admin' sale error)
+            if (user === "admin")
+            {
+                document.getElementById('error-username').style.display = 'block';
+                hayErrores = true;
+            }
+
+            if (!hayErrores && email !== "")
+            {
+                alert("¡Excelente! Registro completo. Bienvenido a Somnia.");
+                // Aquí ya el ususario se va a la página principal del juego
+                // Aquí en el futuro pondremos: window.location.href = 'registro_parte2.html';
+                window.location.href = 'index.html';
             }
         }
     </script>
-
 </body>
 </html>

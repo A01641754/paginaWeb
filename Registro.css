@@ -1,0 +1,97 @@
+/* Estilo en general */
+body
+{
+    background-color: #5B9BD5; /* Fondo azul que podemos cambiar por una imagen */
+    font-family: 'Georgia', serif; /* Esta se la vamos a cambiar al final */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Centra la tarjeta de los dats en medio de la pantalla */
+}
+
+/* La ficha blanca*/
+.contenedor-registro
+{
+    background-color: white;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+.titulo-registro
+{
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+/* Cajas de texto */
+.caja-input
+{
+    width: 100%;
+    height: 55px; /* Tienen una altura fija para que todas sean idénticas */
+    padding: 0 15px;
+    margin-top: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: #333;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+/* Aquí la caja de si es de NIDE es del mismo tamaño que las cajas de inputs */
+.caja-nide
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+}
+
+.caja-nide input[type="checkbox"]
+{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/*Mensajes de error abajo de los inputs */
+.error-debajo {
+    color: #D32F2F;
+    font-size: 13px;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 10px;
+    display: none; /* Ocultos por defecto */
+}
+
+/* Botón de continuar */
+.btn-continuar
+{
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+    width: 100%;
+    font-family: 'Georgia', serif;
+}
+
+.enlace-login
+{
+    display: block;
+    margin-top: 25px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+}

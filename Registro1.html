@@ -1,73 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somnia - Registro Paso 1</title>
-    <link rel="stylesheet" href="estilo.css">
-
+    <title>Registro - Datos Personales</title>
+    <link rel="stylesheet" href="Registro.css">
 </head>
 <body>
 
-    <nav>
-        <div style="font-size: 24px; font-weight: bold; font-family: monospace;">Somnia</div>
-        <a href="#">Videojuego</a>
-        <a href="#" class="btn-historia">Historia</a>
-        <a href="#" class="btn-islas">Islas</a>
-        <a href="#" class="btn-personajes">Personajes</a>
-        <a href="#" class="btn-creadores">Creadores</a>
-    </nav>
-
     <div class="contenedor-registro">
-        <h1 style="font-size: 36px; margin-bottom: 20px;">Registro</h1>
+        <h1 class="titulo-registro">Registro</h1>
+        
+        <form id="form-paso1">
+            
+            <input type="text" id="nombre" class="caja-input" placeholder="Introducir nombre" required>
+            <div id="error-nombre" class="error-debajo">X El nombre no puede contener números.</div>
 
-        <div id="alerta-error" class="mensaje-error">
-            <span id="texto-error">X Faltan datos por rellenar o el email no es válido.</span>
-        </div>
+            <input type="date" id="fecha-nac" class="caja-input" required>
+            <div id="error-fecha" class="error-debajo">X Selecciona tu fecha de nacimiento.</div>
 
-        <form id="formulario-paso1">
-            <input type="email" id="email" placeholder="Introducir email" required>
-            
-            <input type="text" id="username" placeholder="Introducir username" required>
-            
-            <input type="password" id="password" placeholder="Introducir contraseña" required>
-            <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required>
-            
-            <button type="button" class="btn-continuar" onclick="validarPaso1()">Continuar con el Registro</button>
+            <div class="caja-input caja-nide">
+                <label for="nide">Eres usuario de NIDE</label>
+                <input type="checkbox" id="nide">
+            </div>
+
+            <input type="text" id="colonia" class="caja-input" placeholder="Colonia" required>
+
+            <input type="text" id="contacto" class="caja-input" placeholder="Contacto" required>
+
+            <button type="button" class="btn-continuar" onclick="validarPaso1()">Continuar</button>
         </form>
 
-        <p style="margin-top: 20px;"><a href="#" style="color: #E2A669; text-decoration: none;">Log in</a></p>
+        <a href="Login.html" class="enlace-login">Iniciar Sesión</a>
     </div>
 
     <script>
-        function validarPaso1() {
-            const form = document.getElementById('formulario-paso1');
-            const mensajeError = document.getElementById('alerta-error');
-            const textoError = document.getElementById('texto-error');
-            
-            // Sacamos los valores de las contraseñas para compararlas
-            const pass1 = document.getElementById('password').value;
-            const pass2 = document.getElementById('confirm-password').value;
+        function validarPaso1()
+        {
+            document.querySelectorAll('.error-debajo').forEach(e => e.style.display = 'none');
 
-            // 1. Revisamos si llenaron todo y si el email tiene formato correcto
-            if (form.checkValidity() === false) {
-                textoError.innerText = "Faltan datos por rellenar \n Asegúrese que todos los campos estén llenos.";
-                mensajeError.style.display = 'block';
-            } 
-            // 2. Revisamos si las dos contraseñas son exactamente iguales
-            else if (pass1 !== pass2) {
-                textoError.innerText = "X Las contraseñas no coinciden. ¡Revisa bien!";
-                mensajeError.style.display = 'block';
-            } 
-            // 3. ¡Todo chido! Podemos avanzar
-            else {
-                mensajeError.style.display = 'none';
-                alert('¡Perfecto! Todo en orden. Llevando al usuario a la Parte 2...');
-                // Aquí en el futuro pondremos: window.location.href = 'registro_parte2.html';
+            const nombre = document.getElementById('nombre').value;
+            const fecha = document.getElementById('fecha-nac').value;
+
+            let hayErrores = false;
+
+            // Solo acepta letras y espacios
+            const regexSoloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+            if (!regexSoloLetras.test(nombre) || nombre === "")
+            {
+                document.getElementById('error-nombre').style.display = 'block';
+                hayErrores = true;
+            }
+
+            if (fecha === "")
+            {
+                document.getElementById('error-fecha').style.display = 'block';
+                hayErrores = true;
+            }
+
+            if (!hayErrores)
+            {
+                // Si todo está bien pasamos al registro2
+                window.location.href = 'Registro2.html';
             }
         }
     </script>
-
 </body>
 </html>
